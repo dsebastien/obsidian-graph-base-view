@@ -8,3 +8,252 @@
 .support-header-margin {
     @apply mb-5;
 }
+
+/* ========================================
+   GRAPH VIEW
+   ======================================== */
+
+/* Main container */
+.graph-container {
+    @apply relative w-full h-full overflow-hidden;
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+    min-height: 400px;
+}
+
+/* Graph container */
+.graph-view {
+    @apply w-full h-full;
+}
+
+/* SVG styling */
+.graph-svg {
+    @apply w-full h-full;
+}
+
+/* Node styling */
+.graph-node {
+    @apply cursor-pointer;
+    transition:
+        r 0.2s ease,
+        filter 0.2s ease;
+}
+
+.graph-node:hover {
+    filter: drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor) !important;
+}
+
+.graph-node-group--selected .graph-node {
+    filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 16px currentColor) !important;
+}
+
+.graph-node-group--dimmed .graph-node {
+    @apply opacity-30;
+}
+
+/* Cluster styling */
+.graph-cluster .graph-node {
+    stroke: #ff6600;
+    stroke-width: 2;
+}
+
+.graph-cluster-count {
+    @apply pointer-events-none;
+    font-weight: bold;
+}
+
+/* Edge styling */
+.graph-edge {
+    transition:
+        stroke-opacity 0.2s ease,
+        stroke-width 0.2s ease;
+}
+
+.graph-edge--wikilink {
+    stroke: #00ff88;
+}
+
+.graph-edge--folder {
+    stroke: #0088ff;
+    stroke-dasharray: 5, 5;
+}
+
+.graph-edge--property {
+    stroke: #ff8800;
+    stroke-dasharray: 2, 2;
+}
+
+.graph-edge--dimmed {
+    @apply opacity-10;
+}
+
+.graph-edge--highlighted {
+    stroke-width: 2 !important;
+    @apply opacity-100;
+}
+
+/* Label styling */
+.graph-label {
+    @apply pointer-events-none select-none;
+    fill: var(--text-muted);
+    font-family: var(--font-interface);
+    transition: opacity 0.2s ease;
+}
+
+.graph-label--dimmed {
+    @apply opacity-20;
+}
+
+/* Particle canvas */
+.graph-particles {
+    @apply absolute inset-0 pointer-events-none;
+    z-index: 10;
+}
+
+.graph-particle-canvas {
+    @apply absolute inset-0;
+}
+
+/* Empty state */
+.graph-empty {
+    @apply flex flex-col items-center justify-center h-full gap-4;
+    color: var(--text-muted);
+}
+
+.graph-empty-icon {
+    @apply text-5xl opacity-50;
+}
+
+.graph-empty-text {
+    @apply text-base;
+}
+
+/* ========================================
+   DETAILS PANEL
+   ======================================== */
+
+.graph-details-panel {
+    @apply absolute top-0 right-0 h-full overflow-y-auto;
+    width: 320px;
+    background-color: var(--background-secondary);
+    border-left: 1px solid var(--background-modifier-border);
+    z-index: 20;
+}
+
+.graph-details-header {
+    @apply flex items-center justify-between p-4 sticky top-0;
+    background-color: var(--background-secondary);
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.graph-details-title {
+    @apply font-semibold truncate;
+    color: var(--text-normal);
+    max-width: calc(100% - 30px);
+}
+
+.graph-details-close {
+    @apply flex items-center justify-center w-6 h-6 rounded cursor-pointer;
+    @apply border-0 text-lg leading-none;
+    background-color: transparent;
+    color: var(--text-muted);
+    transition: background-color 0.15s ease;
+}
+
+.graph-details-close:hover {
+    background-color: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+.graph-details-section {
+    @apply p-4;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.graph-details-section h4 {
+    @apply m-0 mb-3 text-xs uppercase tracking-wide;
+    color: var(--text-muted);
+}
+
+.graph-details-file-info,
+.graph-details-properties,
+.graph-details-cluster-info {
+    @apply flex flex-col gap-2;
+}
+
+.graph-details-row,
+.graph-details-prop-row {
+    @apply flex justify-between gap-2;
+}
+
+.graph-details-label,
+.graph-details-prop-key {
+    @apply text-xs;
+    color: var(--text-muted);
+}
+
+.graph-details-value,
+.graph-details-prop-value {
+    @apply text-xs text-right truncate;
+    color: var(--text-normal);
+    max-width: 60%;
+}
+
+.graph-details-open-btn {
+    @apply w-full mt-3 px-3 py-2 rounded cursor-pointer;
+    @apply border-0 text-sm font-medium;
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+    transition: background-color 0.15s ease;
+}
+
+.graph-details-open-btn:hover {
+    background-color: var(--interactive-accent-hover);
+}
+
+.graph-details-connections {
+    @apply flex flex-col gap-4;
+}
+
+.graph-details-connection-group {
+    @apply flex flex-col gap-2;
+}
+
+.graph-details-connection-title {
+    @apply text-xs font-medium;
+    color: var(--text-normal);
+}
+
+.graph-details-connection-list {
+    @apply flex flex-col gap-1;
+}
+
+.graph-details-connection-item {
+    @apply text-xs truncate px-2 py-1 rounded;
+    color: var(--text-muted);
+    background-color: var(--background-primary);
+}
+
+.graph-details-no-connections {
+    @apply text-xs italic;
+    color: var(--text-faint);
+}
+
+.graph-details-summary {
+    @apply mt-2 text-xs;
+    color: var(--text-faint);
+}
+
+.graph-details-child-list {
+    @apply flex flex-col gap-1;
+}
+
+.graph-details-child-item {
+    @apply text-xs truncate px-2 py-1 rounded;
+    color: var(--text-muted);
+    background-color: var(--background-primary);
+}
+
+.graph-details-more {
+    @apply text-xs italic;
+    color: var(--text-faint);
+}

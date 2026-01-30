@@ -1,26 +1,30 @@
 {
-    "name": "obsidian-my-plugin",
-    "version": "2.0.4",
-    "description": "TODO: Add your plugin description here",
+    "name": "obsidian-graph-base-view",
+    "version": "1.0.0",
+    "description": "A graph visualization view for Obsidian Bases. Displays notes as glowing nodes with animated connections based on wikilinks, folder hierarchy, and shared properties.",
     "author": {
-        "name": "Your Name",
-        "email": "your-email@example.com",
-        "url": "https://your-website.com"
+        "name": "Sébastien Dubois",
+        "email": "sebastien@dsebastien.net",
+        "url": "https://dsebastien.net"
     },
     "keywords": [
         "obsidian",
-        "obsidian-plugin"
+        "obsidian-plugin",
+        "graph",
+        "visualization",
+        "bases",
+        "d3"
     ],
     "license": "MIT",
     "private": true,
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/your-username/obsidian-my-plugin.git"
+        "url": "git+https://github.com/dsebastien/obsidian-graph-base-view.git"
     },
     "bugs": {
-        "url": "https://github.com/your-username/obsidian-my-plugin/issues"
+        "url": "https://github.com/dsebastien/obsidian-graph-base-view/issues"
     },
-    "homepage": "https://github.com/your-username/obsidian-my-plugin",
+    "homepage": "https://github.com/dsebastien/obsidian-graph-base-view",
     "engines": {
         "node": ">=20.0.0",
         "npm": ">=10.1.0"
@@ -56,7 +60,9 @@
         "release:update-version": "bun scripts/update-version.ts",
         "release:version-bump": "bun scripts/version-bump.ts",
         "release:changelog": "bun scripts/generate-changelog.ts",
-        "release:zip": "bun scripts/create-release-zip.ts"
+        "release:zip": "bun scripts/create-release-zip.ts",
+        "release": "./scripts/release.sh",
+        "validate": "bun run tsc && bun test && bun run lint"
     },
     "devDependencies": {
         "@commitlint/cli": "^20.1.0",
@@ -64,6 +70,7 @@
         "@eslint/js": "^9.36.0",
         "@tailwindcss/cli": "4.1.17",
         "@types/bun": "latest",
+        "@types/d3": "7.4.3",
         "commitizen": "^4.3.1",
         "conventional-changelog-cli": "5.0.0",
         "conventional-changelog-conventionalcommits": "9.1.0",
@@ -79,6 +86,7 @@
         "typescript-eslint": "8.48.1"
     },
     "dependencies": {
+        "d3": "7.9.0",
         "immer": "11.0.1",
         "zod": "^4.1.13"
     }

@@ -2,6 +2,8 @@ import { Plugin } from 'obsidian'
 import { DEFAULT_SETTINGS } from './types/plugin-settings.intf'
 import type { PluginSettings } from './types/plugin-settings.intf'
 import { MyPluginSettingTab } from './settings/settings-tab'
+import { GraphView } from './views/graph-view'
+import { GRAPH_VIEW_TYPE, getGraphViewOptions } from './views/graph-view-options'
 import { log } from '../utils/log'
 import { produce } from 'immer'
 import type { Draft } from 'immer'
@@ -20,10 +22,31 @@ export class MyPlugin extends Plugin {
         log('Initializing', 'debug')
         await this.loadSettings()
 
-        // TODO
+        // Register the Graph view for Bases
+        this.registerGraphView()
 
         // Add a settings screen for the plugin
         this.addSettingTab(new MyPluginSettingTab(this.app, this))
+    }
+
+    /**
+     * Register the Graph view for the Bases feature
+     */
+    private registerGraphView(): void {
+        const registered = this.registerBasesView?.(GRAPH_VIEW_TYPE, {
+            name: 'Graph',
+            icon: 'git-branch',
+            factory: (controller: unknown, containerEl: HTMLElement) =>
+                // @ts-expect-error - Type workaround for internal Obsidian API
+                new GraphView(controller, containerEl, this),
+            options: getGraphViewOptions
+        })
+
+        if (registered === false) {
+            log('Bases feature is not enabled in this vault. Graph view not registered.', 'warn')
+        } else {
+            log('Graph view registered successfully', 'debug')
+        }
     }
 
     override onunload() {}

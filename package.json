@@ -1,6 +1,6 @@
 {
     "name": "obsidian-graph-base-view",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "A graph visualization view for Obsidian Bases. Displays notes as glowing nodes with animated connections based on wikilinks, folder hierarchy, and shared properties.",
     "author": {
         "name": "Sébastien Dubois",
